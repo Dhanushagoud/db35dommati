@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+
+  - let mangoid = toShow._id
+  - let mangotype = toShow.Type
+  - let mangocolor = toShow.color
+  - let mangoprice = toShow.price
+  
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{mangoid}
+  - let actionid = "/resource/resource/mangoes/" + mangoid
+  form(id='mangoform', action= actionid, method="PUT")
+    div.form-group
+        label.costumeAttr(for='Type') Costume type
+        input#costumetype(type='text', name='Type', value= mangotype )
+    div.form-group
+        label.costumeAttr(for='color') Costume size
+        input#size(type='text', name='color', value= mangocolor )
+    div.form-group
+        label.costumeAttr(for='price') Costume cost
+        input#cost(type='number', name='price', value= mangoprice )
+    input(type="submit")
+
+  script.
+    document.forms['mangoform'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
+

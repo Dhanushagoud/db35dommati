@@ -3,7 +3,7 @@ extends layout
 block content
   div(class="container-fluid")
   h1= title
-  - var result=[{Type:"Baganapalli",color:"yellow",price:10.25},{Type:"Himsagar",color:"green",price:16.39},{Type:"Vanraj",color:"purple",price:30.89}] 
+  - var result=results  
   div(class="row")
     each form,index  in result
       div(class = "col-sm-2" onclick=`buy(${index})`) #{form.Type}-#{form.color}-#{form.price}
