@@ -1,22 +1,24 @@
 extends layout
 
 block content
-  h1= title
-
-  - let mangoid = toShow._id
-  - let mangotype = toShow.Type
-  - let mangocolor = toShow.color
-  - let mangoprice = toShow.price
-  div
-    div.row
-      div(class='costumeAttr mr-3') Mango ID is:
-      div(class='mango dhanu') #{mangoid}
-    div.row
-      div(class='costumeAttr mr-3') Mango Type is:
-      div(class='mango dhanu') #{mangotype}
-    div.row
-      div(class='costumeAttr mr-3') Mango Color is:
-      div(class='mango dhanu') #{mangocolor}
-    div.row
-      div(class='costumeAttr mr-3') Mango Price is:
-      div(class='mango dhanu') #{mangoprice}
+    h1= title
+    if (toShow == null)
+        h2 No instance to details 
+    else
+        - let mangoid = toShow._id
+        - let mangotype = toShow.Type
+        - let mangocolor = toShow.color
+        - let mangoprice = toShow.price
+        div
+            div.row
+                div(class='costumeAttr mr-3') Mango ID is:
+                div(class='mango dhanu') #{mangoid}
+            div.row
+                div(class='costumeAttr mr-3') Mango Type is:
+                div(class='mango dhanu') #{mangotype}
+            div.row
+                div(class='costumeAttr mr-3') Mango Color is:
+                div(class='mango dhanu') #{mangocolor}
+            div.row
+                div(class='costumeAttr mr-3') Mango Price is:
+                div(class='mango dhanu') #{mangoprice}
