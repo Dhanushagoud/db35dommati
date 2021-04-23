@@ -1,14 +1,25 @@
-extends layout
+//- extends layout
 
+//- block content
+//-   h1= title
+//-   p Welcome to #{title} , this is assignment 10 in webapps 
+//-   button(type="button", class="btn btn-secondary btn-lg" onclick="update()") Press me
+//-   div(id="target" class="container text-center m-2 p-3" style="color:purple;font-weight:700; background-color:lightblue;") Display
+//-   script. 
+//-       var client_count=0 
+//-       function update(){
+//-         client_count++;
+//-         document.getElementById("target").innerHTML=`Value now ${client_count}`
+//-       } 
+//-   a(href="/Mango") go to Mango
+extends layout
 block content
-  h1= title
-  p Welcome to #{title} , this is assignment 10 in webapps 
-  button(type="button", class="btn btn-secondary btn-lg" onclick="update()") Press me
-  div(id="target" class="container text-center m-2 p-3" style="color:purple;font-weight:700; background-color:lightblue;") Display
-  script. 
-      var client_count=0 
-      function update(){
-        client_count++;
-        document.getElementById("target").innerHTML=`Value now ${client_count}`
-      } 
-  a(href="/Mango") go to Mango
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/mango") Take me to mango
+    br
+    a(href="/logout") Logout

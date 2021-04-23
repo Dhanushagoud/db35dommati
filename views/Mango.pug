@@ -1,15 +1,31 @@
 extends layout
 
 block content
-  div(class="container-fluid")
   h1= title
-  - var result=results  
-  div(class="row")
-    each form,index  in result
-      div(class = "col-sm-2" onclick=`buy(${index})`) #{form.Type}-#{form.color}-#{form.price}
+  - let mangoes =results
+  - let destinationcreate = `dispatchCreate(\"/mangoes/create\")`
+  div(class="container-fluid")
+    button.btn( class="btn-primary ml-1 btn-lg", onclick= destinationcreate) Create
+  div(class="row m-1")
+    each mango,index in mangoes 
+      - let destinationupdate = `dispatch(\"/mangoes/update?id=${mango._id}\")`
+      -let destinationdetail =   `dispatch(\"/mangoes/detail?id=${mango._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/mangoes/delete?id=${mango._id}\")`
+        div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{mango.name} - #{mango.color} - #{mango.price}
+          button.btn( class="btn-info ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-info ml-1", onclick= destinationdelete) Delete
   script.
-     
+      function dispatch(path){
+      window.location.href=path
+      }
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
+      }
+       function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
       }
